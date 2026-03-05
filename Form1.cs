@@ -7,7 +7,7 @@ namespace WindowsFormsApp7
     public partial class Form1 : Form
     {
         
-        private const string AdminConnection = "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=Eugene0905"; // Строка подключения к postgres для загрузки списка БД
+        private const string AdminConnection = "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password="; // Строка подключения к postgres для загрузки списка БД
 
         public Form1()
         {
