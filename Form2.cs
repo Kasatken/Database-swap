@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Windows.Forms;
 using Npgsql;
 
@@ -9,23 +8,24 @@ namespace WindowsFormsApp7
     {
         private string connectionString;
 
-        public Form2(string receivedConnectionString)
+        public Form2(string connectionString)
         {
             InitializeComponent();
-            connectionString = receivedConnectionString;
+            this.connectionString = connectionString;
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void Form2_Load(object sender, System.EventArgs e)
         {
             try
             {
-                string sql = @"SELECT * FROM ""User"" ORDER BY ""UserID""";
-
                 DataTable dataTable = new DataTable();
+
+                string sql = "SELECT * FROM \"User\" ORDER BY \"UserID\"";
 
                 using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
                 {
                     connection.Open();
+
                     using (NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(sql, connection))
                     {
                         adapter.Fill(dataTable);
@@ -33,11 +33,10 @@ namespace WindowsFormsApp7
                 }
 
                 dataGridViewUsers.DataSource = dataTable;
-                
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
-                MessageBox.Show("Ошибка: " + ex.Message);
+                MessageBox.Show("Ошибка загрузки данных: " + ex.Message);
             }
         }
     }
